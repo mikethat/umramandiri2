@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marketplace UmraMandiri — Hotel, tiket, visa, dan layanan umroh mandiri</title>
+<meta name="description" content="Pilih sendiri hotel Makkah dan Madinah, tiket pesawat, visa, transport, muthawwif, dan handling bandara. Semua harga dalam SAR dengan perkiraan total dalam Rupiah.">
+<meta property="og:title" content="Marketplace UmraMandiri">
+<meta property="og:image" content="logo.png">
+<link rel="icon" href="assets/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta name="theme-color" content="#7A1738">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#2b3033;--gold:#c89e50;--gold-d:#7a5a14;--bg:#f3f4f5;--card:#fff;--line:#dcdfe1;--mute:#5d666b}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 "Plus Jakarta Sans",system-ui,sans-serif;padding-bottom:84px}
+h1,h2,h3{margin:0;line-height:1.15;font-weight:800}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.top{background:#fff;border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;justify-content:space-between;align-items:center;padding-top:12px;padding-bottom:12px}
+.top img{height:34px;width:auto;display:block}
+.top a.home{margin-left:auto;margin-right:14px;font-size:14px;font-weight:700;text-decoration:none;color:var(--mute)}
+.top a.wa{font-size:14px;font-weight:700;text-decoration:none;color:var(--ink);border:1px solid var(--ink);padding:8px 14px;border-radius:999px}
+.hero{background:var(--ink);color:#fff;padding:44px 0 52px}
+.hero h1{font-size:clamp(30px,5.5vw,50px);max-width:20ch}
+.hero p{font-size:18px;color:#d3d8db;margin:16px 0 0;max-width:58ch}
+.note{background:#f8efd9;border-bottom:1px solid #e6d3a1;color:#5c4510;font-size:14px;padding:10px 0}
+.tabs{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+.tabs .wrap{display:flex;gap:8px;overflow-x:auto;padding:12px 20px}
+.chip{flex:none;border:1px solid var(--line);background:#fff;color:var(--ink);font:700 14px "Plus Jakarta Sans",sans-serif;padding:9px 16px;border-radius:999px;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:#fff}
+section.cat{display:none;padding:28px 0 8px}
+section.cat.on{display:block}
+section.cat h2{font-size:28px}
+.sub{color:var(--mute);margin:6px 0 18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:8px}
+.card h3{font-size:18px}
+.meta{color:var(--mute);font-size:14px;margin:0}
+.tag{display:inline-block;background:#f8efd9;color:#5c4510;font-size:12px;font-weight:700;padding:2px 8px;border-radius:6px;align-self:flex-start}
+.price{margin-top:auto;padding-top:6px}
+.price b{font-size:24px;font-weight:800}
+.price small{color:var(--mute);font-size:13px}
+.btn{border:0;background:var(--ink);color:#fff;font:700 15px "Plus Jakarta Sans",sans-serif;padding:11px 16px;border-radius:10px;cursor:pointer;text-decoration:none;text-align:center}
+.btn:hover{background:#000}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn.gold{background:var(--gold);color:#1d1f20}
+.panel{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:16px}
+.panel label{font-size:13px;font-weight:700;color:var(--mute);display:flex;flex-direction:column;gap:4px}
+.panel input,.panel select{font:500 15px "Plus Jakarta Sans",sans-serif;padding:9px 10px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);width:100%}
+.seg{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.hotel{display:grid;grid-template-columns:1fr auto;gap:6px 16px;align-items:center}
+.hotel .stars{color:var(--gold);letter-spacing:1px;font-size:14px}
+.hotel .r{text-align:right}
+.hotel .r b{font-size:22px;font-weight:800}
+.hotel .full{grid-column:1/-1}
+.bar{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);box-shadow:0 -6px 20px #2b303314;z-index:9}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:10px;padding-bottom:10px}
+.bar strong{font-size:22px;font-weight:800;display:block;line-height:1.2}
+.bar span{font-size:13px;color:var(--mute);display:block}
+.bar .acts{display:flex;gap:8px;align-items:center}
+.btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--ink)}
+.btn[aria-disabled=true]{opacity:.4;pointer-events:none}
+#cart{display:none;position:fixed;left:0;right:0;bottom:70px;z-index:8;max-height:50vh;overflow:auto;background:#fff;border-top:1px solid var(--line);box-shadow:0 -10px 24px #2b303322}
+#cart.on{display:block}
+.line{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px}
+.line small{display:block;color:var(--mute)}
+.q{display:flex;align-items:center;gap:6px}
+.q button{width:30px;height:30px;border:1px solid var(--line);background:#fff;border-radius:8px;font:700 16px sans-serif;cursor:pointer}
+footer{padding:36px 0 12px;color:var(--mute);font-size:14px}
+@media(max-width:560px){.bar strong{font-size:18px}.bar .btn{padding:10px 12px;font-size:14px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* ===== Palet brand UmraMandiri ===== */
+:root{--ink:#1C1C1C;--gold:#7A1738;--gold-d:#5E102B;--bg:#F7F4F0;--mute:#6B6B6B;--line:#e9e2d9}
+.top a.wa{color:#7A1738;border-color:#7A1738}
+.top strong{color:#7A1738;font-size:1.25rem;letter-spacing:-.02em}
+.hero{background:#7A1738}
+.hero p{color:rgba(255,255,255,.88)}
+.chip[aria-pressed=true]{background:#7A1738;border-color:#7A1738}
+.btn{background:#7A1738;border-radius:999px}.btn:hover{background:#5E102B}
+.btn.gold{background:#7A1738;color:#fff}
+.btn.ghost{background:#fff;color:#7A1738;border:1px solid #7A1738}.btn.ghost:hover{background:#F7F4F0}
+.note{background:#F7F4F0;border-color:#D8C3A5;color:#5E102B}
+.tag{background:#F7F4F0;color:#5E102B}
+.hotel .stars{color:#A52A52}
+
+/* Header ponsel marketplace */
+@media(max-width:480px){.top strong{font-size:1.02rem}.top img{height:28px}.top a.home{margin-right:8px;font-size:13px}.top a.wa{padding:7px 10px;font-size:13px}}
+/* layar 340 marketplace */
+@media(max-width:340px){.top a.home{display:none}}
+
+/* ===== Kartu transport dengan gambar ===== */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:18px}
+.card.veh{padding:0;overflow:hidden;display:flex;flex-direction:column;gap:0}
+.vimg{position:relative;height:160px;background:radial-gradient(ellipse at 50% 90%,#f1e4e9 0,#fff 72%);display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--line)}
+.vimg img{max-height:118px;max-width:80%;object-fit:contain;filter:drop-shadow(0 10px 8px rgba(94,16,43,.2))}
+.vtag{position:absolute;top:12px;left:12px;background:#7A1738;color:#fff;font-size:.72rem;font-weight:700;padding:4px 10px;border-radius:999px}
+.vcap{position:absolute;left:12px;bottom:12px;background:#fff;border:1px solid var(--line);font-size:.72rem;font-weight:600;padding:3px 9px;border-radius:999px}
+.vbody{padding:16px 18px 18px;display:flex;flex-direction:column;gap:10px;flex:1}
+.vbody h3{margin:0}.vlab{color:#7A1738;font-weight:700;font-size:.74rem}
+.chips2{display:flex;flex-wrap:wrap;gap:6px}.chips2 span{background:#F7F4F0;color:#5E102B;font-size:.72rem;font-weight:600;padding:3px 9px;border-radius:6px}
+.vbody label{display:grid;gap:5px;font-size:.78rem;font-weight:600;color:var(--mute)}.vbody select{width:100%}
+.vd{font-size:.8rem;min-height:3.4em;margin:0}
+.vfoot{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;margin-top:auto}
+
+/* Penyempurnaan kartu transport */
+.vimg{overflow:hidden}
+.vimg:after{content:"";position:absolute;bottom:30px;left:50%;transform:translateX(-50%);width:58%;height:16px;border-radius:50%;background:rgba(94,16,43,.16);filter:blur(7px)}
+.vimg img{position:relative;z-index:1;mix-blend-mode:multiply;filter:none;max-height:124px}
+.vtag,.vcap{z-index:2}
+.vfoot>div{flex:1;min-width:0}.vfoot small{font-size:.74rem}
+.vfoot .btn{flex:none;white-space:nowrap;padding:11px 16px}
+.vd{font-size:.78rem}
+/* Harga di atas, tombol selebar kartu */
+.vfoot{flex-direction:column;align-items:stretch;gap:12px}.vfoot .btn{width:100%;text-align:center}.vfoot .price b{font-size:1.45rem;white-space:nowrap}
+</style>
+</head>
+<body>
+<header>
+  <div class="top"><div class="wrap">
+    <a href="./" aria-label="UmraMandiri, kembali ke beranda" style="display:inline-flex;align-items:center;gap:8px;text-decoration:none"><img src="assets/logo-mark-burgundy.png" alt="" style="height:34px;width:auto"><strong>UmraMandiri</strong></a>
+    <a class="home" href="./">&larr; Beranda</a>
+    <a class="wa" id="waTop" href="#" target="_blank" rel="noopener">Tanya lewat WhatsApp</a>
+  </div></div>
+  <div class="hero"><div class="wrap">
+    <h1>Susun umroh mandiri sendiri, lihat total biayanya sekarang.</h1>
+    <p>Pilih hotel Makkah dan Madinah, tiket pesawat, visa, transport, muthawwif, dan handling bandara. Tambahkan yang Anda perlukan, total estimasi langsung muncul.</p>
+  </div></div>
+</header>
+<div class="note"><div class="wrap" id="note"></div></div>
+<nav class="tabs" aria-label="Kategori"><div class="wrap" id="tabs"></div></nav>
+<main id="list"></main>
+<footer><div class="wrap">© 2026 UmraMandiri. Harga bisa berubah mengikuti kebijakan dan regulasi di Saudi.</div></footer>
+
+<div id="cart" aria-label="Rincian pilihan"><div class="wrap" id="lines"></div></div>
+<div class="bar" role="region" aria-label="Ringkasan pilihan"><div class="wrap">
+  <div><span id="count">Belum ada pilihan</span><strong id="tSar">SAR 0</strong><span id="tIdr"></span></div>
+  <div class="acts"><button class="btn ghost" id="toggle">Rincian</button><a class="btn gold" id="order" aria-disabled="true" href="#" target="_blank" rel="noopener">Kirim via WhatsApp</a></div>
+</div></div>
+
+<script src="data/data.js"></script>
+<script>
+// Kurs, harga, dan tarif hotel dibaca dari data/data.js (satu sumber untuk seluruh website)
+// ======== HARGA NON-HOTEL (dalam SAR) ========
+var CATS=[
+ {id:"hotel",n:"Hotel",d:"Harga per kamar per malam, sudah termasuk makan 3 kali sehari (fullboard)."},
+ {id:"pesawat",n:"Tiket pesawat",d:"Harga acuan tiket pulang-pergi."},
+ {id:"visa",n:"Visa",d:"Pengurusan visa umroh."},
+ {id:"transport",n:"Transport",d:"Harga per kendaraan, dalam SAR. Pilih rute satuan atau paket full trip."},
+ {id:"muthawwif",n:"Muthawwif",d:"Pembimbing ibadah."},
+ {id:"handling",n:"Handling bandara",d:"Dibantu dari mendarat sampai keluar bandara."}
+];
+var ITEMS=[
+ {id:"a1",c:"pesawat",n:"Tiket pesawat pulang-pergi",m:"Harga acuan Rp "+PRICE.tiketRp.toLocaleString("id-ID")+", dikonversi ke SAR sesuai kurs",u:"/ orang",p:Math.round(PRICE.tiketRp/RATE)},
+ {id:"v1",c:"visa",n:"Visa umroh",m:"Harga acuan USD "+PRICE.visaUsd+", dikonversi ke SAR (1 USD = "+String(USD_SAR).replace(".",",")+" SAR)",u:"/ orang",p:Math.round(PRICE.visaUsd*USD_SAR)},
+ {id:"m1",c:"muthawwif",n:"Muthawwif setengah hari",m:"Thawaf dan sa'i didampingi",u:"/ sesi",p:PRICE.mtHalf,ph:1},
+ {id:"m2",c:"muthawwif",n:"Muthawwif full day",m:"Ibadah plus ziarah kota",u:"/ hari",p:PRICE.mtFull,ph:1},
+ {id:"g1",c:"handling",n:"Handling kedatangan Jeddah",m:"Imigrasi dan bagasi dibantu",u:"/ orang",p:PRICE.hin,ph:1},
+ {id:"g2",c:"handling",n:"Handling kepulangan",m:"Check-in dan bagasi dibantu",u:"/ orang",p:PRICE.hout,ph:1}
+];
+// ============================================
+var DAY=864e5, cart={}, state={city:"Makkah",star:0}, TYPES=["Double","Triple","Quad"], OCC=[2,3,4];
+var fmt=function(n){return "SAR "+Math.round(n).toLocaleString("id-ID")};
+var rp=function(n){return "Rp "+Math.round(n).toLocaleString("id-ID")};
+var dm=function(s){var d=+s.slice(0,2),m=+s.slice(2);return Date.UTC(m>=8?2026:2027,m-1,d)/DAY};
+function parse(s){var a=s.split("|");return{n:a[0],s:+a[1],r:a[2].split(";").map(function(x){var p=x.split(":"),d=p[0].split("-");return{a:dm(d[0]),b:dm(d[1]),p:p[1].split("/").map(Number)}})}}
+var DB={};Object.keys(HOTELS).forEach(function(c){DB[c]=HOTELS[c].map(parse)});
+function night(h,d,t){var v=null;h.r.forEach(function(r){if(d>=r.a&&d<=r.b)v=r.p[t]});return v}
+function stay(h,ci,n,t){var tot=0;for(var i=0;i<n;i++){var v=night(h,ci+i,t);if(v==null)return null;tot+=v}return tot}
+var $=function(i){return document.getElementById(i)};
+var iso=function(d){return new Date(d*DAY).toISOString().slice(0,10)};
+var el=function(t,c,h){var e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e};
+
+$("note").innerHTML="<b>Semua harga dalam SAR.</b> Perkiraan Rupiah memakai kurs Rp "+RATE.toLocaleString("id-ID")+" per SAR ("+RATE_DATE+") dan bisa berubah.";
+$("waTop").href="https://wa.me/"+WA;
+
+var tabs=$("tabs"),list=$("list");
+CATS.forEach(function(c){
+  var b=el("button","chip",c.n);b.id="tab-"+c.id;b.setAttribute("aria-pressed","false");b.onclick=function(){pick(c.id)};tabs.appendChild(b);
+  var s=el("section","cat");s.id=c.id;s.innerHTML='<div class="wrap"><h2>'+c.n+'</h2><p class="sub">'+c.d+'</p><div id="body-'+c.id+'"></div></div>';list.appendChild(s);
+});
+
+// ---- Hotel ----
+(function(){
+  var b=$("body-hotel");
+  b.innerHTML='<div class="seg" id="cities"></div><div class="panel">'+
+   '<label>Check-in<input type="date" id="ci" value="2026-11-01" min="2026-08-14" max="2027-03-09"></label>'+
+   '<label>Jumlah malam<input type="number" id="nt" value="4" min="1" max="30"></label>'+
+   '<label>Tipe kamar<select id="ty"><option value="0">Double (2 orang)</option><option value="1">Triple (3 orang)</option><option value="2">Quad (4 orang)</option></select></label>'+
+   '<label>Jumlah kamar<input type="number" id="rm" value="1" min="1" max="20"></label>'+
+   '<label>Bintang<select id="st"><option value="0">Semua</option><option value="5">5</option><option value="4">4</option><option value="3">3</option></select></label></div>'+
+   '<div class="grid" id="hg"></div>';
+  var cs=$("cities");
+  Object.keys(HOTELS).forEach(function(c){var x=el("button","chip",c);x.setAttribute("aria-pressed",c===state.city);x.onclick=function(){state.city=c;[].forEach.call(cs.children,function(y){y.setAttribute("aria-pressed",y===x)});draw()};cs.appendChild(x)});
+  ["ci","nt","ty","rm","st"].forEach(function(i){$(i).oninput=draw});
+  function draw(){
+    var n=Math.max(1,+$("nt").value||1),t=+$("ty").value,rm=Math.max(1,+$("rm").value||1),st=+$("st").value,g=$("hg");
+    var y=+$("ci").value.slice(0,4),ci=Date.UTC(y,+$("ci").value.slice(5,7)-1,+$("ci").value.slice(8,10))/DAY;
+    var rows=DB[state.city].filter(function(h){return !st||h.s===st}).map(function(h){var tot=stay(h,ci,n,t);return{h:h,tot:tot}});
+    rows.sort(function(a,b){return (a.tot==null)-(b.tot==null)||a.tot-b.tot});
+    g.innerHTML="";
+    rows.forEach(function(o){
+      var h=o.h,c=el("article","card hotel"),stars="★".repeat(h.s);
+      if(o.tot==null){c.innerHTML='<div><h3>'+h.n+'</h3><span class="stars">'+stars+'</span></div><div class="r meta">Tarif belum tersedia<br>untuk tanggal ini</div>';g.appendChild(c);return}
+      var avg=o.tot/n,total=o.tot*rm;
+      c.innerHTML='<div><h3>'+h.n+'</h3><span class="stars">'+stars+'</span></div>'+
+       '<div class="r"><b>'+fmt(avg)+'</b><br><small class="meta">/ kamar / malam (rata-rata)</small></div>'+
+       '<p class="meta full">≈ '+fmt(avg/OCC[t])+' / orang / malam · '+n+' malam × '+rm+' kamar '+TYPES[t]+' = <b>'+fmt(total)+'</b></p>';
+      var a=el("button","btn full","Tambah ke pilihan");
+      a.onclick=function(){addLine("h|"+state.city+h.n+ci+n+t+rm,h.n+" ("+state.city+", "+TYPES[t]+")",iso(ci)+", "+n+" malam, "+rm+" kamar",total)};
+      c.appendChild(a);g.appendChild(c);
+    });
+  }
+  draw();
+})();
+
+// ---- Non-hotel ----
+CATS.slice(1).forEach(function(c){
+  if(c.id==="transport")return;
+  var g=el("div","grid");$("body-"+c.id).appendChild(g);
+  ITEMS.filter(function(x){return x.c===c.id}).forEach(function(x){
+    var d=el("article","card");
+    d.innerHTML=(x.ph?'<span class="tag">Harga contoh</span>':'')+'<h3>'+x.n+'</h3><p class="meta">'+x.m+'</p><div class="price"><b>'+fmt(x.p)+'</b> <small>'+x.u+'</small></div>';
+    var a=el("button","btn","Tambah ke pilihan");a.onclick=function(){addLine(x.id,x.n,x.u,x.p)};
+    d.appendChild(a);g.appendChild(d);
+  });
+});
+
+// ---- Transport ----
+(function(){
+  var T=TRANSPORT,g=el("div","vgrid");$("body-transport").appendChild(g);
+  var rt=function(id){return T.r.filter(function(r){return r.id===id})[0]};
+  var sum=function(f,vi){return f.r.reduce(function(s,id){return s+rt(id).p[vi]},0)};
+  T.v.forEach(function(v,vi){
+    var c=el("article","card veh");
+    var opt='<optgroup label="Full trip (satu paket rute)">'+T.ft.map(function(f){return '<option value="ft:'+f.id+'">'+f.n+' ('+fmt(sum(f,vi))+')</option>'}).join("")+'</optgroup><optgroup label="Per rute">'+T.r.map(function(r){return '<option value="r:'+r.id+'">'+r.n+' ('+fmt(r.p[vi])+')</option>'}).join("")+'</optgroup>';
+    c.innerHTML='<div class="vimg"><span class="vtag">'+v.tag+'</span><img src="'+v.img+'" alt="'+v.n+'" loading="lazy"><span class="vcap">'+v.cap+'</span></div>'+
+     '<div class="vbody"><small class="vlab">'+v.lab+'</small><h3>'+v.n+'</h3><div class="chips2">'+v.chips.map(function(x){return '<span>'+x+'</span>'}).join("")+'</div>'+
+     '<label>Pilih rute atau full trip<select>'+opt+'</select></label><p class="meta vd"></p>'+
+     '<div class="vfoot"><div><small class="meta">Harga per kendaraan</small><div class="price"><b class="vp"></b></div><small class="meta vr"></small></div></div></div>';
+    var sel=c.querySelector("select"),vp=c.querySelector(".vp"),vr=c.querySelector(".vr"),vd=c.querySelector(".vd"),cur;
+    function upd(){var s=sel.value.split(":"),f=s[0]==="ft"?T.ft.filter(function(x){return x.id===s[1]})[0]:null,r=f?null:rt(s[1]);
+      cur={name:f?f.n:r.n,p:f?sum(f,vi):r.p[vi],full:!!f};
+      vp.textContent=fmt(cur.p);vr.textContent="\u2248 "+rp(cur.p*RATE);
+      vd.textContent=f?f.d:"Sekali jalan, per kendaraan."}
+    var a=el("button","btn","Tambah ke pilihan");
+    a.onclick=function(){addLine("tr|"+v.id+"|"+sel.value,v.n+": "+cur.name,cur.full?"per kendaraan, ziarah termasuk":"per kendaraan",cur.p)};
+    c.querySelector(".vfoot").appendChild(a);sel.onchange=upd;upd();g.appendChild(c);
+  });
+})();
+
+// ---- Pilihan & total ----
+function addLine(k,n,note,p){if(cart[k])cart[k].q++;else cart[k]={n:n,note:note,p:p,q:1};render()}
+function render(){
+  var t=0,k=0,lines=[],box=$("lines");box.innerHTML="";
+  Object.keys(cart).forEach(function(key){
+    var it=cart[key];t+=it.p*it.q;k+=it.q;lines.push("- "+it.n+" ("+it.note+") x"+it.q+": "+fmt(it.p*it.q));
+    var r=el("div","line",'<div>'+it.n+'<small>'+it.note+' · '+fmt(it.p)+'</small></div><div class="q"><button aria-label="Kurangi">−</button><span>'+it.q+'</span><button aria-label="Tambah">+</button></div><b>'+fmt(it.p*it.q)+'</b>');
+    var bt=r.querySelectorAll("button");
+    bt[0].onclick=function(){if(--it.q<=0)delete cart[key];render()};
+    bt[1].onclick=function(){it.q++;render()};
+    box.appendChild(r);
+  });
+  if(!k){$("cart").classList.remove("on");box.innerHTML='<p class="meta" style="padding:14px 0">Belum ada pilihan.</p>'}
+  $("tSar").textContent=fmt(t);
+  $("tIdr").textContent=k?"≈ "+rp(t*RATE)+" (kurs Rp "+RATE.toLocaleString("id-ID")+"/SAR)":"";
+  $("count").textContent=k?k+" item dipilih · estimasi total":"Belum ada pilihan";
+  var a=$("order");a.setAttribute("aria-disabled",k?"false":"true");
+  a.href=k?"https://wa.me/"+WA+"?text="+encodeURIComponent("Halo UmraMandiri, saya ingin memesan:\n"+lines.join("\n")+"\nEstimasi total: "+fmt(t)+" (≈ "+rp(t*RATE)+")"):"#";
+}
+$("toggle").onclick=function(){if(Object.keys(cart).length)$("cart").classList.toggle("on")};
+render();
+
+// ---- Navbar kategori: tampilkan satu kategori saja ----
+function pick(id){
+  if(!CATS.some(function(c){return c.id===id}))id="hotel";
+  CATS.forEach(function(c){$(c.id).classList.toggle("on",c.id===id);$("tab-"+c.id).setAttribute("aria-pressed",c.id===id)});
+  try{history.replaceState(null,"","#"+id)}catch(e){}
+  window.scrollTo(0,Math.min(window.scrollY,list.offsetTop-56));
+  $("tab-"+id).scrollIntoView({inline:"center",block:"nearest"});
+}
+pick(location.hash.slice(1)||"hotel");
+</script>
+</body>
+</html>
