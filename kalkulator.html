@@ -1,50 +1,26 @@
 <!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Kalkulator Budget Umroh | UmraMandiri</title>
-<meta name="description" content="Hitung estimasi biaya umroh mandiri: visa, hotel Makkah dan Madinah, transportasi, tiket pesawat, dan muthawwif dalam satu kalkulator.">
-<meta name="theme-color" content="#7A1738">
-<meta property="og:title" content="UmraMandiri | Umroh mandiri bukan berarti sendirian">
-<meta property="og:description" content="Peta Kesiapan, kalkulator biaya, marketplace layanan, dan pendampingan umroh mandiri.">
-<meta property="og:type" content="website">
-<link rel="icon" href="assets/favicon.png" type="image/png">
-<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-<header><div class="wrap">
-<a class="logo" href="./"><img class="lg" src="assets/logo-mark-burgundy.png" alt=""><span>Umra<b>Mandiri</b></span></a>
-<nav><a href="./">Beranda</a><a class="navm" href="marketplace.html">Marketplace</a><a href="ebook.html">Ebook</a><a class="btn" href="https://wa.me/6289624493600?text=Assalamualaikum%2C%20saya%20ingin%20konsultasi%20umroh%20mandiri">Konsultasi</a></nav>
-</div></header>
-<section class="hero-sec slim"><div class="wrap"><div style="position:relative;max-width:760px">
-<h1>Hitung estimasi <span class="hl">budget umroh</span> Anda</h1>
-<p>Sesuaikan jumlah jamaah, tanggal, hotel, transportasi, dan pendamping untuk melihat estimasi biaya secara langsung sebelum konsultasi.</p></div></div></section>
-
-<section class="wzs"><div class="wrap"><div class="wz" id="wz">
-<div class="prog"><i id="pg"></i></div><p class="stepno" id="sn"></p>
-<div id="st"></div>
-<div class="nav2"><button class="btn ghost" id="bk" type="button">Kembali</button><button class="btn" id="nx" type="button">Lanjut</button></div>
-</div>
-<p class="dnote"><span id="kurs"></span> Estimasi dihitung berdasarkan layanan yang dipilih. Harga final dapat berubah sesuai tanggal perjalanan, ketersediaan, kurs, dan konfirmasi layanan.</p></div></section>
-
-<div class="dock"><div class="wrap"><div><small>Estimasi total</small><b id="dt1">Rp 0</b><small id="dt2"></small></div><a class="btn" id="dwa" href="#">Konsultasikan Estimasi</a></div></div>
-<footer><div class="wrap">
-<div class="fg">
-<div><a class="logo" style="color:#fff" href="./"><img class="lg" src="assets/logo-mark-white.png" alt=""><span>Umra<b style="color:#fff">Mandiri</b></span></a>
-<p style="margin-top:12px">Teman bagi Anda yang memilih umroh mandiri. Layanan ditujukan untuk jamaah perorangan dan keluarga inti. Kami bukan biro perjalanan dan tidak menyelenggarakan keberangkatan rombongan.</p></div>
-<div><h4>Layanan</h4><a href="marketplace.html#hotel">Hotel</a><a href="marketplace.html#pesawat">Tiket pesawat</a><a href="marketplace.html#visa">Visa</a><a href="marketplace.html#transport">Transportasi</a><a href="marketplace.html#muthawwif">Muthawwif</a><a href="marketplace.html#handling">Handling bandara</a></div>
-<div><h4>Rencanakan</h4><a href="./#peta">Peta Kesiapan</a><a href="kalkulator.html">Kalkulator budget</a><a href="./#fase">Cara kerja</a></div>
-<div><h4>Bantuan</h4><a href="https://wa.me/6289624493600">WhatsApp 0896-2449-3600</a><a href="./#faq">FAQ</a></div>
-</div>
-<!-- Tambahkan NIB / legalitas usaha di sini setelah tersedia -->
-<div class="fb">&copy; 2026 UmraMandiri. Harga dapat berubah mengikuti kebijakan dan regulasi di Saudi.</div>
-</div></footer>
-<script src="data/data.js"></script>
-<script src="js/kalkulator.js"></script>
-</body>
-</html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Kalkulator Budget Umroh | UmraMandiri</title><meta name="theme-color" content="#7A1738">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Public+Sans:wght@400;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/style.css"></head><body>
+<nav><div class="w"><b>Umra<i>Mandiri</i></b><a href="index.html">Beranda</a><a class="btn" data-wa="saya ingin konsultasi umroh mandiri" href="https://wa.me/6289624493600">Tanya via WhatsApp</a></div></nav>
+<section><div class="w"><h1 style="font-size:clamp(1.9rem,5vw,3rem)">Kalkulator Budget Umroh</h1><p class="lead">Estimasi awal untuk menyiapkan anggaran. Bukan penawaran harga; angka final mengikuti tanggal, ketersediaan, kurs, dan kebijakan di Saudi.</p>
+<form class="f" id="k" oninput="hitung()">
+<label>Dewasa<input type="number" id="dw" min="1" value="2"></label><label>Infant<input type="number" id="inf" min="0" value="0"></label>
+<label>Malam di Makkah<input type="number" id="mk" min="0" value="5"></label><label>Malam di Madinah<input type="number" id="md" min="0" value="4"></label>
+<label>Kelas hotel<select id="tier"><option value="0">Ekonomis</option><option value="1" selected>Standar</option><option value="2">Nyaman</option></select></label>
+<label>Transportasi lokal<select id="tr"><option value="1">Termasuk</option><option value="0">Tidak</option></select></label>
+<label>Pendamping muthawwif<select id="mt"><option value="0">Tidak</option><option value="1">Ya</option></select></label></form>
+<div class="res"><div class="sc"><table id="rinci"></table></div><p style="margin-top:14px">Total estimasi</p><div class="tot" id="tot"></div><p id="pp" style="color:var(--mut)"></p><p style="margin-top:14px"><a class="btn" id="bwa" href="#">Bahas hasil hitungan saya via WhatsApp</a></p></div></div></section>
+<script src="assets/app.js"></script>
+<script>
+/* GANTI ANGKA DI BAWAH dengan tarif terbaru Anda (Rupiah). Angka saat ini hanya CONTOH. */
+const R={visa:2000000,tiket:12000000,tiketInfant:1500000,transport:1200000,muthawwifPerHari:150000,
+hotelMakkah:[300000,450000,700000],hotelMadinah:[250000,400000,600000]}; // per orang per malam
+const v=i=>Math.max(0,+document.getElementById(i).value||0),rp=n=>'Rp'+Math.round(n).toLocaleString('id-ID');
+function hitung(){const d=v('dw'),i=v('inf'),mk=v('mk'),md=v('md'),t=+tier.value,tr=+document.getElementById('tr').value,mt=+document.getElementById('mt').value,orang=d+i;
+const rows=[['Visa ('+orang+' jamaah)',R.visa*orang],['Tiket pesawat',R.tiket*d+R.tiketInfant*i],['Hotel Makkah ('+mk+' malam)',R.hotelMakkah[t]*mk*d],['Hotel Madinah ('+md+' malam)',R.hotelMadinah[t]*md*d],['Transportasi lokal',R.transport*d*tr],['Pendamping muthawwif ('+(mk+md)+' hari)',R.muthawwifPerHari*(mk+md)*mt]];
+const total=rows.reduce((s,r)=>s+r[1],0);
+rinci.innerHTML=rows.map(r=>`<tr><td>${r[0]}</td><td style="text-align:right">${rp(r[1])}</td></tr>`).join('');
+document.getElementById('tot').textContent=rp(total);pp.textContent='Sekitar '+rp(orang?total/orang:0)+' per jamaah';
+bwa.href=wa(`saya sudah mencoba kalkulator: ${d} dewasa, ${i} infant, ${mk} malam Makkah, ${md} malam Madinah, estimasi total ${rp(total)}. Bisa dibahas?`)}
+hitung();
+</script></body></html>
